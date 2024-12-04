@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA Snow Watch - Your Local Winter Weather HQ</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1A1A1A;
+            --bg-medium: #2C2C2C;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0A0A0;
+            --accent-color: #0A84FF;
+            --accent-secondary: #0A84FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.6;
+        }
+
+        .snowflake {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: white;
+            border-radius: 50%;
+            animation: snowfall linear infinite;
+            opacity: 0.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .glass-card {
+            background: rgba(44, 44, 44, 0.7);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+            will-change: transform, box-shadow;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 3s infinite;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--accent-secondary);
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+        }
+
+        .weather-intro {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        .weather-intro p {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .responsive-iframe {
+            width: 100%;
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            will-change: transform;
+        }
+
+        .responsive-iframe:hover {
+            transform: scale(1.02);
+        }
+
+        .current-time {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 300;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .live-feed-trigger {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .live-feed-trigger .fa-video {
+            color: var(--text-secondary);
+            font-size: 24px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .live-feed-trigger:hover .fa-video {
+            color: var(--accent-color);
+            transform: scale(1.2) rotate(15deg);
+        }
+
+        #live-feed-modal,
+        #local-reports-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        /* Hide all scrollbars globally */
+        *::-webkit-scrollbar {
+            display: none;
+        }
+
+        * {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Enhance text on dark glass card */
+        .glass-card p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .glass-card a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .glass-card a:hover {
+            text-decoration: underline;
+            color: var(--accent-secondary);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .live-feed-trigger {
+                top: 10px;
+                right: 10px;
+            }
+        }
+
+
+        .local-reports-trigger {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .local-reports-trigger .fa-wifi {
+            color: var(--text-secondary);
+            font-size: 24px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .local-reports-trigger:hover .fa-wifi {
+            color: var(--accent-color);
+            transform: scale(1.2) rotate(-15deg);
+        }
+
+        .report-item {
+            padding: 15px;
+            border-bottom: 1px solid var(--bg-medium);
+        }
+
+        .report-item:last-child {
+            border-bottom: none;
+        }
+
+        .report-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .report-date::before {
+            content: '📅 ';
+            /* Calendar emoji */
+            margin-right: 5px;
+        }
+
+        .read-more-btn {
+            background-color: transparent;
+            border: none;
+            color: var(--accent-color);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0;
+            margin-top: 5px;
+        }
+
+        .read-more-btn:hover {
+            text-decoration: underline;
+        }
+
+        #local-reports-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #local-reports-container {
+            max-height: 400px;
+            /* Set the max height for the scrollable area */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
+            padding-right: 10px;
+            /* Add some padding for scrollbar visibility */
+        }
+
+        /* Optional: Add custom scrollbar styling (only supported in modern browsers) */
+        #local-reports-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #local-reports-container::-webkit-scrollbar-thumb {
+            background-color: var(--accent-color);
+            border-radius: 4px;
+        }
+
+        #local-reports-container::-webkit-scrollbar-thumb:hover {
+            background-color: var(--accent-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="snow-container" id="snow-container"></div>
+
+    <div class="container">
+        <div class="weather-intro">
+            <h1>NOVA Snow Watch - Your Local Winter Weather HQ</h1>
+            <p>Keeping an eye on the flurries for our fellow Northern Virginians!</p>
+            <p>We'll help you track the potential for snow days, delays, and everything in between.</p>
+        </div>
+
+        <div class="glass-card" style="position: relative;">
+            <div class="current-time">
+                Northern Virginia Weather Center - Powered by Windy.com
+            </div>
+            <button id="view-live-feed" class="live-feed-trigger" aria-label="View Live Feed">
+                <i class="fas fa-video"></i>
+            </button>
+            <button id="view-local-reports" class="local-reports-trigger" aria-label="View Local Reports">
+                <i class="fas fa-wifi"></i>
+            </button>
+
+            <iframe class="responsive-iframe" height="450"
+                src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=in&metricTemp=°F&metricWind=mph&zoom=6&overlay=snowAccu&product=ecmwf&level=surface&lat=37.699&lon=-78.709&message=true"></iframe>
+        </div>
+
+        <div class="glass-card">
+            <h2>Snow Forecast & Updates - Straight from the Experts!</h2>
+            <p>Staying informed is key! We're tapping into real-time updates and forecasts to keep you ahead of the
+                storm.</p>
+            <iframe class="responsive-iframe" height="1600"
+                src="https://rss.app/embed/v1/wall/t3ros4iu7TPyKa6u"></iframe>
+            <p>Source: <a href="https://rss.app/" target="_blank">RSS.app</a> aggregates the latest weather news.</p>
+        </div>
+
+        <!-- Live Feed Modal -->
+        <div id="live-feed-modal"
+            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+            <div class="glass-card"
+                style="max-width: 800px; width: 90%; position: relative; padding: 20px; background: rgba(44, 44, 44, 0.9); border-radius: 10px; text-align: center;">
+                <button class="close-btn" id="close-live-feed">&times;</button>
+                <h2 style="margin-bottom: 20px; color: white;">Live Webcam - Northern Virginia</h2>
+                <div style="width: 100%; height: auto; overflow: hidden; border-radius: 15px;">
+                    <a name="windy-webcam-timelapse-player" data-id="1611753606" data-play="day" data-loop="0"
+                        data-auto-play="0" data-force-full-screen-on-overlay-play="0" data-interactive="1"
+                        href="https://windy.com/webcams/1611753606" target="_blank">Stanley</a>
+                    <script async type="text/javascript"
+                        src="https://webcams.windy.com/webcams/public/embed/v2/script/player.js"></script>
+                </div>
+            </div>
+        </div>
+
+        <!-- Local Reports Modal -->
+        <div id="local-reports-modal">
+            <div class="glass-card"
+                style="max-width: 600px; width: 90%; position: relative; padding: 20px; background: rgba(44, 44, 44, 0.9); border-radius: 10px;">
+                <button class="close-btn" id="close-local-reports">&times;</button>
+                <h2 style="margin-bottom: 20px; color: white;">Local Reports</h2>
+                <div id="local-reports-container">
+                    <!-- Add local reports here -->
+                    <div class="report-item">
+                        <span class="report-date">December 1, 2024</span>
+                        <p>A light dusting of snow has graced Reston, Virginia, hinting at the beauty of winter while bringing a noticeable chill. Though not much snow has fallen, it’s enough to create a touch of seasonal charm. With temperatures cooler than in recent years, it feels like a true winter is settling in, sparking hope for cozy days ahead and perhaps more snowy surprises to come.</p>
+                    </div>
+                    <!-- Add more reports as needed -->
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        const modal = document.getElementById('live-feed-modal');
+        const localReportsModal = document.getElementById('local-reports-modal');
+        const snowContainer = document.getElementById('snow-container');
+
+        // Live Feed Modal Interactions
+        document.getElementById('view-live-feed').addEventListener('click', function (e) {
+            e.preventDefault();
+            modal.style.display = 'flex';
+        });
+
+        document.getElementById('close-live-feed').addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside the card
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+
+        // Local Reports Modal Interactions
+        document.getElementById('view-local-reports').addEventListener('click', function (e) {
+            e.preventDefault();
+            localReportsModal.style.display = 'flex';
+        });
+
+        document.getElementById('close-local-reports').addEventListener('click', function () {
+            localReportsModal.style.display = 'none';
+        });
+
+        localReportsModal.addEventListener('click', function (e) {
+            if (e.target === localReportsModal) {
+                localReportsModal.style.display = 'none';
+            }
+        });
+
+
+        // Create Snowfall Animation
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+
+            // Random positioning
+            snowflake.style.left = `${Math.random() * 100}%`;
+
+            // Random size
+            const size = Math.random() * 5 + 2;
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+
+            // Random fall duration
+            const duration = Math.random() * 10 + 5;
+            snowflake.style.animationDuration = `${duration}s`;
+
+            // Random horizontal movement
+            snowflake.style.animationDelay = `-${Math.random() * duration}s`;
+
+            snowContainer.appendChild(snowflake);
+
+            // Remove snowflake after animation
+            setTimeout(() => {
+                snowflake.remove();
+            }, duration * 1000);
+        }
+
+        // Create multiple snowflakes
+        function initSnowfall() {
+            for (let i = 0; i < 50; i++) {
+                createSnowflake();
+            }
+
+            // Continuously create snowflakes
+            setInterval(createSnowflake, 500);
+        }
+
+        // Initialize snowfall
+        initSnowfall();
+    </script>
+</body>
+
+</html>
