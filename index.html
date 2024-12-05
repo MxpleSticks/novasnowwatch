@@ -93,7 +93,8 @@
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px 40px;
+            /* Increased top padding to 100px to clear the control center */
             position: relative;
             z-index: 10;
         }
@@ -178,6 +179,19 @@
             text-transform: uppercase;
         }
 
+         .countdown-container {
+            text-align: center;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+            color: var(--text-secondary);
+            font-size: 1.0rem;
+             letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 300;
+            }
+        
         .live-feed-trigger {
             position: absolute;
             top: 20px;
@@ -370,6 +384,141 @@
         #local-reports-container::-webkit-scrollbar-thumb:hover {
             background-color: var(--accent-secondary);
         }
+
+        .wind-chill-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .wind-chill-form label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .wind-chill-form input {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--bg-medium);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            color: var(--text-primary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .wind-chill-form input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(10, 132, 255, 0.3);
+        }
+
+        .calculate-btn {
+            background-color: var(--accent-color);
+            color: var(--text-primary);
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .calculate-btn:hover {
+            background-color: var(--accent-secondary);
+            transform: translateY(-2px);
+        }
+
+        #windChillResult {
+            text-align: center;
+            color: var(--text-primary);
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .result-tag {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            color: var(--text-primary);
+        }
+
+        .cold-result {
+            background-color: #2C6FAD;
+        }
+
+        .freezing-result {
+            background-color: #1E4D7B;
+        }
+
+        .extreme-result {
+            background-color: #133256;
+        }
+
+        .wind-chill-result-container {
+            margin-top: 20px;
+            perspective: 1000px;
+        }
+
+        #windChillResult {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+        }
+
+        .result-tag {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            background-color: rgba(10, 132, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            will-change: transform, box-shadow;
+        }
+
+        .result-tag:hover {
+            transform: translateY(-5px) rotateX(10deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            background-color: rgba(10, 132, 255, 0.3);
+        }
+
+        .cold-result {
+            background-color: rgba(44, 109, 173, 0.3);
+            border-color: rgba(44, 109, 173, 0.5);
+        }
+
+        .freezing-result {
+            background-color: rgba(30, 77, 123, 0.3);
+            border-color: rgba(30, 77, 123, 0.5);
+        }
+
+        .extreme-result {
+            background-color: rgba(19, 50, 86, 0.3);
+            border-color: rgba(19, 50, 86, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
     </style>
 </head>
 
@@ -377,6 +526,7 @@
     <div class="snow-container" id="snow-container"></div>
 
     <div class="container">
+         <div class="countdown-container" id="countdown"></div>
         <div class="weather-intro">
             <h1>NOVA Snow Watch - Your Local Winter Weather HQ</h1>
             <p>Keeping an eye on the flurries for our fellow Northern Virginians!</p>
@@ -407,6 +557,25 @@
             <p>Source: <a href="https://rss.app/" target="_blank">RSS.app</a> aggregates the latest weather news.</p>
         </div>
 
+        <div class="glass-card">
+            <h2>Real-Time Wind Chill Calculator</h2>
+            <p>Calculate how cold it really feels outside! Enter your local temperature and wind speed.</p>
+
+            <form id="windChillForm" class="wind-chill-form">
+                <div>
+                    <label for="temperature">Temperature (°F):</label>
+                    <input type="number" id="temperature" placeholder="Enter temperature" required>
+                </div>
+                <div>
+                    <label for="windSpeed">Wind Speed (mph):</label>
+                    <input type="number" id="windSpeed" placeholder="Enter wind speed" required>
+                </div>
+                <button type="submit" class="calculate-btn">Calculate Wind Chill</button>
+            </form>
+
+            <div id="windChillResult"></div>
+        </div>
+
         <!-- Live Feed Modal -->
         <div id="live-feed-modal"
             style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
@@ -433,8 +602,41 @@
                 <div id="local-reports-container">
                     <!-- Add local reports here -->
                     <div class="report-item">
+                        <span class="report-date">December 4, 2024</span>
+                        <p>Snow is expected to arrive in Northern Virginia, including Winchester and Tazewell, sometime
+                            within the next three days! While it may not be a significant amount, it will create a
+                            lovely, wintry atmosphere. It’s a great opportunity to enjoy the beauty of the snowflakes
+                            falling and perhaps take a leisurely stroll to appreciate the scenery. Embrace the cozy
+                            vibes and the charm of the season!</p>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-date">December 4, 2024</span>
+                        <p>On December 5th, 2024, there's a fun twist in the air with a 20% chance that schools in
+                            Fairfax might close due to some chilly weather, possibly bringing along a sprinkle of ice
+                            and snow! As winter approaches, it's a great time for residents to keep an eye on the
+                            weather forecasts and the possibility of a snow day. While there's a good chance that
+                            schools will stay open, parents and guardians can get creative and plan some exciting
+                            activities for the kids just in case the snowflakes start to fall. Whether it's building a
+                            snowman, having a cozy movie marathon, or enjoying some hot cocoa, a surprise day off could
+                            turn into a winter wonderland adventure! So, let’s embrace the season and get ready for some
+                            frosty fun!</p>
+                    </div>
+                    <div class="report-item">
+                        <span class="report-date">December 3, 2024</span>
+                        <p>It looks like West Virginia has made a cozy little arrangement with Old Man Winter, because
+                            they’re definitely hogging all the snow! I can just picture them up in the mountains,
+                            running a secret snowman factory, cranking out flurries for their own winter wonderland.
+                            While the rest of us are left with just a sprinkle, West Virginia is out there crafting snow
+                            forts and having snowball fights like it’s an Olympic sport. At this rate, they might as
+                            well start selling tickets to their frosty paradise!</p>
+                    </div>
+                    <div class="report-item">
                         <span class="report-date">December 1, 2024</span>
-                        <p>A light dusting of snow has graced Reston, Virginia, hinting at the beauty of winter while bringing a noticeable chill. Though not much snow has fallen, it’s enough to create a touch of seasonal charm. With temperatures cooler than in recent years, it feels like a true winter is settling in, sparking hope for cozy days ahead and perhaps more snowy surprises to come.</p>
+                        <p>A light dusting of snow has graced Reston, Virginia, hinting at the beauty of winter while
+                            bringing a noticeable chill. Though not much snow has fallen, it’s enough to create a touch
+                            of seasonal charm. With temperatures cooler than in recent years, it feels like a true
+                            winter is settling in, sparking hope for cozy days ahead and perhaps more snowy surprises to
+                            come.</p>
                     </div>
                     <!-- Add more reports as needed -->
                 </div>
@@ -448,6 +650,7 @@
         const modal = document.getElementById('live-feed-modal');
         const localReportsModal = document.getElementById('local-reports-modal');
         const snowContainer = document.getElementById('snow-container');
+         const countdownDiv = document.getElementById('countdown');
 
         // Live Feed Modal Interactions
         document.getElementById('view-live-feed').addEventListener('click', function (e) {
@@ -481,6 +684,42 @@
             if (e.target === localReportsModal) {
                 localReportsModal.style.display = 'none';
             }
+        });
+
+        document.getElementById('windChillForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const temperature = parseFloat(document.getElementById('temperature').value);
+            const windSpeed = parseFloat(document.getElementById('windSpeed').value);
+            const resultDiv = document.getElementById('windChillResult');
+
+            // Wind Chill Formula (National Weather Service)
+            const windChill = 35.74 + (0.6215 * temperature) -
+                (35.75 * Math.pow(windSpeed, 0.16)) +
+                (0.4275 * temperature * Math.pow(windSpeed, 0.16));
+
+            const roundedWindChill = Math.round(windChill);
+
+            let resultText = `Wind Chill: ${roundedWindChill}°F`;
+            let resultClass = 'result-tag';
+
+            if (roundedWindChill <= 0) {
+                resultText += ' - Extreme Cold! Limit outdoor exposure.';
+                resultClass += ' extreme-result';
+            } else if (roundedWindChill <= 20) {
+                resultText += ' - Very Cold. Dress in layers!';
+                resultClass += ' freezing-result';
+            } else if (roundedWindChill <= 32) {
+                resultText += ' - Cold. Possible snow!';
+                resultClass += ' cold-result';
+            }
+
+            // Wrap the result in a container for additional styling flexibility
+            resultDiv.innerHTML = `
+        <div class="wind-chill-result-container">
+            <span class="${resultClass}">${resultText}</span>
+        </div>
+    `;
         });
 
 
@@ -524,6 +763,34 @@
 
         // Initialize snowfall
         initSnowfall();
+
+         function updateCountdown() {
+            const now = new Date();
+            const christmasDate = new Date(now.getFullYear(), 11, 25); // Month is 0-indexed
+
+            if (now > christmasDate) {
+                christmasDate.setFullYear(now.getFullYear() + 1); // Get next Christmas
+            }
+            const timeLeft = christmasDate.getTime() - now.getTime();
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+
+            let countdownText = "";
+            if (days > 1) {
+                 countdownText = `${days} Days until Christmas`;
+            }
+            else if (days === 1){
+                countdownText = `1 Day until Christmas`;
+            }
+            else {
+                 countdownText = `It's Christmas!!`
+            }
+            countdownDiv.textContent = countdownText;
+        }
+
+         updateCountdown(); // Call immediately to initialize the count
+         setInterval(updateCountdown, 1000); // Update every second
+
     </script>
 </body>
 
