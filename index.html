@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,11 +20,13 @@
             --accent-secondary: #0A84FF;
         }
 
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
 
         @keyframes fadeIn {
             from {
@@ -31,33 +34,40 @@
                 transform: translateY(20px);
             }
 
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
+
         @keyframes snowfall {
             0% {
                 transform: translateY(-100%);
             }
+
 
             100% {
                 transform: translateY(100vh);
             }
         }
 
+
         @keyframes pulse {
+
 
             0%,
             100% {
                 transform: scale(1);
             }
 
+
             50% {
                 transform: scale(1.05);
             }
         }
+
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -68,6 +78,7 @@
             position: relative;
             overflow-x: hidden;
         }
+
 
         .snow-container {
             position: fixed;
@@ -80,6 +91,7 @@
             opacity: 0.6;
         }
 
+
         .snowflake {
             position: absolute;
             width: 5px;
@@ -90,6 +102,7 @@
             opacity: 0.7;
         }
 
+
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -98,6 +111,7 @@
             position: relative;
             z-index: 10;
         }
+
 
         .glass-card {
             background: rgba(44, 44, 44, 0.7);
@@ -113,10 +127,12 @@
             will-change: transform, box-shadow;
         }
 
+
         .glass-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
         }
+
 
         h1 {
             font-family: 'Playfair Display', serif;
@@ -129,6 +145,7 @@
             animation: pulse 3s infinite;
         }
 
+
         h2 {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
@@ -137,6 +154,7 @@
             font-size: 1.8rem;
             letter-spacing: -0.5px;
         }
+
 
         .weather-intro {
             text-align: center;
@@ -147,6 +165,7 @@
             animation-delay: 0.5s;
         }
 
+
         .weather-intro p {
             font-style: italic;
             margin-top: 10px;
@@ -155,6 +174,7 @@
             margin-left: auto;
             margin-right: auto;
         }
+
 
         .responsive-iframe {
             width: 100%;
@@ -165,9 +185,11 @@
             will-change: transform;
         }
 
+
         .responsive-iframe:hover {
             transform: scale(1.02);
         }
+
 
         .current-time {
             text-align: center;
@@ -179,7 +201,8 @@
             text-transform: uppercase;
         }
 
-         .countdown-container {
+
+        .countdown-container {
             text-align: center;
             margin-bottom: 10px;
             opacity: 0;
@@ -187,11 +210,12 @@
             animation-delay: 0.5s;
             color: var(--text-secondary);
             font-size: 1.0rem;
-             letter-spacing: 1px;
+            letter-spacing: 1px;
             text-transform: uppercase;
             font-weight: 300;
-            }
-        
+        }
+
+
         .live-feed-trigger {
             position: absolute;
             top: 20px;
@@ -203,16 +227,19 @@
             animation: pulse 2s infinite;
         }
 
+
         .live-feed-trigger .fa-video {
             color: var(--text-secondary);
             font-size: 24px;
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
+
         .live-feed-trigger:hover .fa-video {
             color: var(--accent-color);
             transform: scale(1.2) rotate(15deg);
         }
+
 
         #live-feed-modal,
         #local-reports-modal {
@@ -229,6 +256,8 @@
         }
 
 
+
+
         .close-btn {
             position: absolute;
             top: 10px;
@@ -241,19 +270,23 @@
             transition: transform 0.3s ease;
         }
 
+
         .close-btn:hover {
             transform: rotate(90deg);
         }
+
 
         /* Hide all scrollbars globally */
         *::-webkit-scrollbar {
             display: none;
         }
 
+
         * {
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
 
         /* Enhance text on dark glass card */
         .glass-card p {
@@ -263,6 +296,7 @@
             line-height: 1.7;
         }
 
+
         .glass-card a {
             color: var(--accent-color);
             text-decoration: none;
@@ -270,25 +304,31 @@
             transition: color 0.3s ease;
         }
 
+
         .glass-card a:hover {
             text-decoration: underline;
             color: var(--accent-secondary);
         }
+
 
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
             }
 
+
             h2 {
                 font-size: 1.5rem;
             }
+
 
             .live-feed-trigger {
                 top: 10px;
                 right: 10px;
             }
         }
+
+
 
 
         .local-reports-trigger {
@@ -302,25 +342,30 @@
             animation: pulse 2s infinite;
         }
 
+
         .local-reports-trigger .fa-wifi {
             color: var(--text-secondary);
             font-size: 24px;
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
+
         .local-reports-trigger:hover .fa-wifi {
             color: var(--accent-color);
             transform: scale(1.2) rotate(-15deg);
         }
+
 
         .report-item {
             padding: 15px;
             border-bottom: 1px solid var(--bg-medium);
         }
 
+
         .report-item:last-child {
             border-bottom: none;
         }
+
 
         .report-date {
             color: var(--text-secondary);
@@ -329,11 +374,13 @@
             margin-bottom: 5px;
         }
 
+
         .report-date::before {
             content: '📅 ';
             /* Calendar emoji */
             margin-right: 5px;
         }
+
 
         .read-more-btn {
             background-color: transparent;
@@ -345,9 +392,11 @@
             margin-top: 5px;
         }
 
+
         .read-more-btn:hover {
             text-decoration: underline;
         }
+
 
         #local-reports-modal {
             display: none;
@@ -362,6 +411,7 @@
             align-items: center;
         }
 
+
         #local-reports-container {
             max-height: 400px;
             /* Set the max height for the scrollable area */
@@ -371,19 +421,23 @@
             /* Add some padding for scrollbar visibility */
         }
 
+
         /* Optional: Add custom scrollbar styling (only supported in modern browsers) */
         #local-reports-container::-webkit-scrollbar {
             width: 8px;
         }
+
 
         #local-reports-container::-webkit-scrollbar-thumb {
             background-color: var(--accent-color);
             border-radius: 4px;
         }
 
+
         #local-reports-container::-webkit-scrollbar-thumb:hover {
             background-color: var(--accent-secondary);
         }
+
 
         .wind-chill-form {
             display: flex;
@@ -393,10 +447,12 @@
             margin: 0 auto;
         }
 
+
         .wind-chill-form label {
             color: var(--text-secondary);
             font-size: 1rem;
         }
+
 
         .wind-chill-form input {
             width: 100%;
@@ -408,11 +464,13 @@
             transition: all 0.3s ease;
         }
 
+
         .wind-chill-form input:focus {
             outline: none;
             border-color: var(--accent-color);
             box-shadow: 0 0 10px rgba(10, 132, 255, 0.3);
         }
+
 
         .calculate-btn {
             background-color: var(--accent-color);
@@ -424,10 +482,12 @@
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
+
         .calculate-btn:hover {
             background-color: var(--accent-secondary);
             transform: translateY(-2px);
         }
+
 
         #windChillResult {
             text-align: center;
@@ -437,6 +497,7 @@
             font-weight: bold;
         }
 
+
         .result-tag {
             display: inline-block;
             margin-top: 10px;
@@ -445,22 +506,27 @@
             color: var(--text-primary);
         }
 
+
         .cold-result {
             background-color: #2C6FAD;
         }
+
 
         .freezing-result {
             background-color: #1E4D7B;
         }
 
+
         .extreme-result {
             background-color: #133256;
         }
+
 
         .wind-chill-result-container {
             margin-top: 20px;
             perspective: 1000px;
         }
+
 
         #windChillResult {
             display: flex;
@@ -469,6 +535,7 @@
             transition: all 0.4s ease;
             transform-style: preserve-3d;
         }
+
 
         .result-tag {
             display: inline-block;
@@ -486,21 +553,25 @@
             will-change: transform, box-shadow;
         }
 
+
         .result-tag:hover {
             transform: translateY(-5px) rotateX(10deg);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             background-color: rgba(10, 132, 255, 0.3);
         }
 
+
         .cold-result {
             background-color: rgba(44, 109, 173, 0.3);
             border-color: rgba(44, 109, 173, 0.5);
         }
 
+
         .freezing-result {
             background-color: rgba(30, 77, 123, 0.3);
             border-color: rgba(30, 77, 123, 0.5);
         }
+
 
         .extreme-result {
             background-color: rgba(19, 50, 86, 0.3);
@@ -508,290 +579,688 @@
             animation: pulse 2s infinite;
         }
 
+
         @keyframes pulse {
+
 
             0%,
             100% {
                 transform: scale(1);
             }
 
+
             50% {
                 transform: scale(1.05);
             }
         }
+
+
+        .page-wrapper {
+            display: flex;
+            position: relative;
+        }
+
+
+        .sidebar-nav {
+            position: fixed;
+            right: 0;
+            /* Positioned on the right */
+            top: 50%;
+            transform: translateY(-50%);
+            width: 125px;
+            /* Reduced width */
+            background: linear-gradient(135deg, rgba(44, 44, 44, 0.7), rgba(30, 30, 30, 0.9));
+            backdrop-filter: blur(15px);
+            border-radius: 15px 0 0 15px;
+            /* Softer rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow for depth */
+            padding: 15px 10px;
+            /* Reduced padding */
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+
+        .sidebar-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            /* Reduced spacing */
+        }
+
+
+        .sidebar-nav-item {
+            cursor: pointer;
+            padding: 8px 15px;
+            /* Reduced padding */
+            font-size: 14px;
+            /* Smaller text */
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            border-radius: 8px;
+            /* Slightly smaller corners */
+            transition: all 0.3s ease;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+
+        .sidebar-nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+        }
+
+
+        .sidebar-nav-item.active {
+            background: var(--accent-color);
+            color: white;
+            box-shadow: 0 3px 10px var(--accent-color);
+        }
+
+
+        /* Adjusted scroll indicator for smaller size */
+        .scroll-indicator {
+            position: fixed;
+            left: 20px;
+            /* Move to the left side */
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            /* Slimmed down */
+            height: 70%;
+            /* Proportional to reduced sidebar */
+            background: rgba(44, 44, 44, 0.3);
+            border-radius: 10px;
+            z-index: 100;
+        }
+
+
+        .scroll-indicator-progress {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 0;
+            /* Progress will dynamically adjust */
+            background: var(--accent-color);
+            border-radius: 10px;
+            transition: height 0.3s ease;
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .sidebar-nav {
+                display: none;
+            }
+
+
+            .scroll-indicator {
+                display: none;
+            }
+        }
+
+        #current-weather {
+            text-align: center;
+        }
+
+        .weather-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .weather-icon {
+            width: 100px;
+            height: 100px;
+        }
+
+        .temperature {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .description {
+            font-size: 1.2em;
+            text-transform: capitalize;
+        }
+
+        .humidity,
+        .wind-speed {
+            font-size: 1em;
+            color: var(--text-secondary);
+        }
+
+        #current-weather {
+            text-align: center;
+        }
+
+        #current-weather {
+            text-align: center;
+        }
+
+        .weather-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .weather-icon-container {
+            font-size: 5em;
+            color: var(--accent-color);
+        }
+
+        .weather-details {
+            text-align: left;
+        }
+
+        .temperature {
+            font-size: 3em;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin: 0;
+        }
+
+        .description {
+            font-size: 1.5em;
+            text-transform: capitalize;
+            margin: 5px 0;
+        }
+
+        .humidity,
+        .wind-speed {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin: 5px 0;
+        }
+
+        .fas {
+            margin-right: 5px;
+        }
     </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 
+
 <body>
-    <div class="snow-container" id="snow-container"></div>
 
-    <div class="container">
-         <div class="countdown-container" id="countdown"></div>
-        <div class="weather-intro">
-            <h1>NOVA Snow Watch - Your Local Winter Weather HQ</h1>
-            <p>Keeping an eye on the flurries for our fellow Northern Virginians!</p>
-            <p>We'll help you track the potential for snow days, delays, and everything in between.</p>
+
+    <div class="page-wrapper">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar-nav">
+            <ul class="sidebar-nav-list" id="sidebar-nav-list">
+                <li class="sidebar-nav-item" data-target="weather-center">Weather Center</li>
+                <li class="sidebar-nav-item" data-target="snow-forecast">Snow Forecast</li>
+                <li class="sidebar-nav-item" data-target="current-weather">Current Weather</li>
+                <li class="sidebar-nav-item" data-target="wind-chill">Wind Chill</li>
+            </ul>
         </div>
 
-        <div class="glass-card" style="position: relative;">
-            <div class="current-time">
-                Northern Virginia Weather Center - Powered by Windy.com
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-indicator-progress" id="scroll-progress"></div>
+        </div>
+
+
+        <div class="snow-container" id="snow-container"></div>
+
+
+        <div class="container">
+            <div class="countdown-container" id="countdown"></div>
+            <div class="weather-intro">
+                <h1>NOVA Snow Watch - Your Local Winter Weather HQ</h1>
+                <p>Keeping an eye on the flurries for our fellow Northern Virginians!</p>
+                <p>We'll help you track the potential for snow days, delays, and everything in between.</p>
             </div>
-            <button id="view-live-feed" class="live-feed-trigger" aria-label="View Live Feed">
-                <i class="fas fa-video"></i>
-            </button>
-            <button id="view-local-reports" class="local-reports-trigger" aria-label="View Local Reports">
-                <i class="fas fa-wifi"></i>
-            </button>
 
-            <iframe class="responsive-iframe" height="450"
-                src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=in&metricTemp=°F&metricWind=mph&zoom=6&overlay=snowAccu&product=ecmwf&level=surface&lat=37.699&lon=-78.709&message=true"></iframe>
-        </div>
 
-        <div class="glass-card">
-            <h2>Snow Forecast & Updates - Straight from the Experts!</h2>
-            <p>Staying informed is key! We're tapping into real-time updates and forecasts to keep you ahead of the
-                storm.</p>
-            <iframe class="responsive-iframe" height="1600"
-                src="https://rss.app/embed/v1/wall/t3ros4iu7TPyKa6u"></iframe>
-            <p>Source: <a href="https://rss.app/" target="_blank">RSS.app</a> aggregates the latest weather news.</p>
-        </div>
-
-        <div class="glass-card">
-            <h2>Real-Time Wind Chill Calculator</h2>
-            <p>Calculate how cold it really feels outside! Enter your local temperature and wind speed.</p>
-
-            <form id="windChillForm" class="wind-chill-form">
-                <div>
-                    <label for="temperature">Temperature (°F):</label>
-                    <input type="number" id="temperature" placeholder="Enter temperature" required>
+            <div class="glass-card" id="weather-center" data-section="weather-center" style="position: relative;">
+                <div class="current-time">
+                    Northern Virginia Weather Center - Powered by Windy.com
                 </div>
-                <div>
-                    <label for="windSpeed">Wind Speed (mph):</label>
-                    <input type="number" id="windSpeed" placeholder="Enter wind speed" required>
-                </div>
-                <button type="submit" class="calculate-btn">Calculate Wind Chill</button>
-            </form>
+                <button id="view-live-feed" class="live-feed-trigger" aria-label="View Live Feed">
+                    <i class="fas fa-video"></i>
+                </button>
+                <button id="view-local-reports" class="local-reports-trigger" aria-label="View Local Reports">
+                    <i class="fas fa-wifi"></i>
+                </button>
 
-            <div id="windChillResult"></div>
-        </div>
 
-        <!-- Live Feed Modal -->
-        <div id="live-feed-modal"
-            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
-            <div class="glass-card"
-                style="max-width: 800px; width: 90%; position: relative; padding: 20px; background: rgba(44, 44, 44, 0.9); border-radius: 10px; text-align: center;">
-                <button class="close-btn" id="close-live-feed">&times;</button>
-                <h2 style="margin-bottom: 20px; color: white;">Live Webcam - Northern Virginia</h2>
-                <div style="width: 100%; height: auto; overflow: hidden; border-radius: 15px;">
-                    <a name="windy-webcam-timelapse-player" data-id="1611753606" data-play="day" data-loop="0"
-                        data-auto-play="0" data-force-full-screen-on-overlay-play="0" data-interactive="1"
-                        href="https://windy.com/webcams/1611753606" target="_blank">Stanley</a>
-                    <script async type="text/javascript"
-                        src="https://webcams.windy.com/webcams/public/embed/v2/script/player.js"></script>
-                </div>
+                <iframe class="responsive-iframe" height="450"
+                    src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=in&metricTemp=°F&metricWind=mph&zoom=6&overlay=snowAccu&product=ecmwf&level=surface&lat=37.699&lon=-78.709&message=true"></iframe>
             </div>
-        </div>
 
-        <!-- Local Reports Modal -->
-        <div id="local-reports-modal">
-            <div class="glass-card"
-                style="max-width: 600px; width: 90%; position: relative; padding: 20px; background: rgba(44, 44, 44, 0.9); border-radius: 10px;">
-                <button class="close-btn" id="close-local-reports">&times;</button>
-                <h2 style="margin-bottom: 20px; color: white;">Local Reports</h2>
-                <div id="local-reports-container">
-                    <!-- Add local reports here -->
-                    <div class="report-item">
-                        <span class="report-date">December 4, 2024</span>
-                        <p>Snow is expected to arrive in Northern Virginia, including Winchester and Tazewell, sometime
-                            within the next three days! While it may not be a significant amount, it will create a
-                            lovely, wintry atmosphere. It’s a great opportunity to enjoy the beauty of the snowflakes
-                            falling and perhaps take a leisurely stroll to appreciate the scenery. Embrace the cozy
-                            vibes and the charm of the season!</p>
+
+
+
+            <div class="glass-card" id="snow-forecast" data-section="snow-forecast">
+                <h2>Snow Forecast & Updates - Straight from the Experts!</h2>
+                <p>Staying informed is key! We're tapping into real-time updates and forecasts to keep you ahead of the
+                    storm.</p>
+                <iframe class="responsive-iframe" height="1600"
+                    src="https://rss.app/embed/v1/wall/t3ros4iu7TPyKa6u"></iframe>
+                <p>Source: <a href="https://rss.app/" target="_blank">RSS.app</a> aggregates the latest weather news.
+                </p>
+            </div>
+
+
+            <div class="glass-card" id="current-weather" data-section="current-weather">
+                <h2>Current Weather</h2>
+                <div id="weather-info" class="weather-info">
+                    <div class="weather-icon-container">
+                        <i class="fas fa-spinner fa-spin"></i>
                     </div>
-                    <div class="report-item">
-                        <span class="report-date">December 4, 2024</span>
-                        <p>On December 5th, 2024, there's a fun twist in the air with a 20% chance that schools in
-                            Fairfax might close due to some chilly weather, possibly bringing along a sprinkle of ice
-                            and snow! As winter approaches, it's a great time for residents to keep an eye on the
-                            weather forecasts and the possibility of a snow day. While there's a good chance that
-                            schools will stay open, parents and guardians can get creative and plan some exciting
-                            activities for the kids just in case the snowflakes start to fall. Whether it's building a
-                            snowman, having a cozy movie marathon, or enjoying some hot cocoa, a surprise day off could
-                            turn into a winter wonderland adventure! So, let’s embrace the season and get ready for some
-                            frosty fun!</p>
+                    <div class="weather-details">
+                        <p class="temperature">--°F</p>
+                        <p class="description">Loading...</p>
+                        <p class="humidity"><i class="fas fa-tint"></i> Humidity: --%</p>
+                        <p class="wind-speed"><i class="fas fa-wind"></i> Wind Speed: -- mph</p>
                     </div>
-                    <div class="report-item">
-                        <span class="report-date">December 3, 2024</span>
-                        <p>It looks like West Virginia has made a cozy little arrangement with Old Man Winter, because
-                            they’re definitely hogging all the snow! I can just picture them up in the mountains,
-                            running a secret snowman factory, cranking out flurries for their own winter wonderland.
-                            While the rest of us are left with just a sprinkle, West Virginia is out there crafting snow
-                            forts and having snowball fights like it’s an Olympic sport. At this rate, they might as
-                            well start selling tickets to their frosty paradise!</p>
-                    </div>
-                    <div class="report-item">
-                        <span class="report-date">December 1, 2024</span>
-                        <p>A light dusting of snow has graced Reston, Virginia, hinting at the beauty of winter while
-                            bringing a noticeable chill. Though not much snow has fallen, it’s enough to create a touch
-                            of seasonal charm. With temperatures cooler than in recent years, it feels like a true
-                            winter is settling in, sparking hope for cozy days ahead and perhaps more snowy surprises to
-                            come.</p>
-                    </div>
-                    <!-- Add more reports as needed -->
                 </div>
             </div>
+
+
+            <div class="glass-card" id="wind-chill" data-section="wind-chill">
+                <h2>Real-Time Wind Chill Calculator</h2>
+                <p>Calculate how cold it really feels outside! Enter your local temperature and wind speed.</p>
+
+
+                <form id="windChillForm" class="wind-chill-form">
+                    <div>
+                        <label for="temperature">Temperature (°F):</label>
+                        <input type="number" id="temperature" placeholder="Enter temperature" required>
+                    </div>
+                    <div>
+                        <label for="windSpeed">Wind Speed (mph):</label>
+                        <input type="number" id="windSpeed" placeholder="Enter wind speed" required>
+                    </div>
+                    <button type="submit" class="calculate-btn">Calculate Wind Chill</button>
+                </form>
+
+
+                <div id="windChillResult"></div>
+            </div>
+
+
+            <!-- Live Feed Modal -->
+            <div id="live-feed-modal"
+                style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+                <div class="glass-card"
+                    style="max-width: 800px; width: 90%; position: relative; padding: 20px; background: rgba(44, 44, 44, 0.9); border-radius: 10px; text-align: center;">
+                    <button class="close-btn" id="close-live-feed">&times;</button>
+                    <h2 style="margin-bottom: 20px; color: white;">Live Webcam - Northern Virginia</h2>
+                    <div style="width: 100%; height: auto; overflow: hidden; border-radius: 15px;">
+                        <a name="windy-webcam-timelapse-player" data-id="1611753606" data-play="day" data-loop="0"
+                            data-auto-play="0" data-force-full-screen-on-overlay-play="0" data-interactive="1"
+                            href="https://windy.com/webcams/1611753606" target="_blank">Stanley</a>
+                        <script async type="text/javascript"
+                            src="https://webcams.windy.com/webcams/public/embed/v2/script/player.js"></script>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Local Reports Modal -->
+            <div id="local-reports-modal">
+                <div class="glass-card"
+                    style="max-width: 600px; width: 90%; position: relative; padding: 20px; background: rgba(44, 44, 44, 0.9); border-radius: 10px;">
+                    <button class="close-btn" id="close-local-reports">&times;</button>
+                    <h2 style="margin-bottom: 20px; color: white;">Local Reports</h2>
+                    <div id="local-reports-container">
+                        <!-- Add local reports here -->
+                        <div class="report-item">
+                            <span class="report-date">December 4, 2024</span>
+                            <p>Snow is expected to arrive in Northern Virginia, including Winchester and Tazewell,
+                                sometime
+                                within the next three days! While it may not be a significant amount, it will create a
+                                lovely, wintry atmosphere. It’s a great opportunity to enjoy the beauty of the
+                                snowflakes
+                                falling and perhaps take a leisurely stroll to appreciate the scenery. Embrace the cozy
+                                vibes and the charm of the season!</p>
+                        </div>
+                        <div class="report-item">
+                            <span class="report-date">December 4, 2024</span>
+                            <p>On December 5th, 2024, there's a fun twist in the air with a 20% chance that schools in
+                                Fairfax might close due to some chilly weather, possibly bringing along a sprinkle of
+                                ice
+                                and snow! As winter approaches, it's a great time for residents to keep an eye on the
+                                weather forecasts and the possibility of a snow day. While there's a good chance that
+                                schools will stay open, parents and guardians can get creative and plan some exciting
+                                activities for the kids just in case the snowflakes start to fall. Whether it's building
+                                a
+                                snowman, having a cozy movie marathon, or enjoying some hot cocoa, a surprise day off
+                                could
+                                turn into a winter wonderland adventure! So, let’s embrace the season and get ready for
+                                some
+                                frosty fun!</p>
+                        </div>
+                        <div class="report-item">
+                            <span class="report-date">December 3, 2024</span>
+                            <p>It looks like West Virginia has made a cozy little arrangement with Old Man Winter,
+                                because
+                                they’re definitely hogging all the snow! I can just picture them up in the mountains,
+                                running a secret snowman factory, cranking out flurries for their own winter wonderland.
+                                While the rest of us are left with just a sprinkle, West Virginia is out there crafting
+                                snow
+                                forts and having snowball fights like it’s an Olympic sport. At this rate, they might as
+                                well start selling tickets to their frosty paradise!</p>
+                        </div>
+                        <div class="report-item">
+                            <span class="report-date">December 1, 2024</span>
+                            <p>A light dusting of snow has graced Reston, Virginia, hinting at the beauty of winter
+                                while
+                                bringing a noticeable chill. Though not much snow has fallen, it’s enough to create a
+                                touch
+                                of seasonal charm. With temperatures cooler than in recent years, it feels like a true
+                                winter is settling in, sparking hope for cozy days ahead and perhaps more snowy
+                                surprises to
+                                come.</p>
+                        </div>
+                        <!-- Add more reports as needed -->
+                    </div>
+                </div>
+            </div>
+
+
+
+
         </div>
 
 
-    </div>
+        <script>
+            const modal = document.getElementById('live-feed-modal');
+            const localReportsModal = document.getElementById('local-reports-modal');
+            const snowContainer = document.getElementById('snow-container');
+            const countdownDiv = document.getElementById('countdown');
 
-    <script>
-        const modal = document.getElementById('live-feed-modal');
-        const localReportsModal = document.getElementById('local-reports-modal');
-        const snowContainer = document.getElementById('snow-container');
-         const countdownDiv = document.getElementById('countdown');
+            // Live Feed Modal Interactions
+            document.getElementById('view-live-feed').addEventListener('click', function (e) {
+                e.preventDefault();
+                modal.style.display = 'flex';
+            });
 
-        // Live Feed Modal Interactions
-        document.getElementById('view-live-feed').addEventListener('click', function (e) {
-            e.preventDefault();
-            modal.style.display = 'flex';
-        });
-
-        document.getElementById('close-live-feed').addEventListener('click', function () {
-            modal.style.display = 'none';
-        });
-
-        // Close modal when clicking outside the card
-        modal.addEventListener('click', function (e) {
-            if (e.target === modal) {
+            document.getElementById('close-live-feed').addEventListener('click', function () {
                 modal.style.display = 'none';
+            });
+
+            // Close modal when clicking outside the card
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            const tumbleKey = 'cfb0e2c3d7d2edf5458a746a5508069b';
+            const defaultLocation = 'Reston,US';
+
+            function getWeatherData(location) {
+                let tumbleUrl;
+                if (typeof location === 'string' && location.includes(',')) {
+                    // If location is coordinates (lat,lon)
+                    const [lat, lon] = location.split(',');
+                    tumbleUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${tumbleKey}&units=imperial`;
+                } else {
+                    // If location is city name
+                    tumbleUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${tumbleKey}&units=imperial`;
+                }
+
+                fetch(tumbleUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Weather data not available');
+                        }
+                        return response.json();
+                    })
+                    .then(data => displayWeather(data))
+                    .catch(error => {
+                        console.error("Error fetching weather data:", error);
+                        displayError("Unable to fetch weather data. Please try again later.");
+                    });
             }
-        });
+
+            function displayWeather(data) {
+                const weatherInfo = document.getElementById('weather-info');
+                const iconElement = weatherInfo.querySelector('.weather-icon-container i');
+                const temperatureElement = weatherInfo.querySelector('.temperature');
+                const descriptionElement = weatherInfo.querySelector('.description');
+                const humidityElement = weatherInfo.querySelector('.humidity');
+                const windSpeedElement = weatherInfo.querySelector('.wind-speed');
+
+                const iconCode = data.weather[0].icon;
+                iconElement.className = 'fas'; // Reset to base Font Awesome class
+                iconElement.classList.add(getWeatherIcon(iconCode));
+
+                temperatureElement.textContent = `${Math.round(data.main.temp)}°F`;
+                descriptionElement.textContent = data.weather[0].description;
+                humidityElement.innerHTML = `<i class="fas fa-tint"></i> Humidity: ${data.main.humidity}%`;
+                windSpeedElement.innerHTML = `<i class="fas fa-wind"></i> Wind Speed: ${Math.round(data.wind.speed)} mph`;
+            }
+
+            function displayError(message) {
+                const weatherInfo = document.getElementById('weather-info');
+                weatherInfo.innerHTML = `<p class="error-message">${message}</p>`;
+            }
+
+            function getWeatherIcon(iconCode) {
+                switch (iconCode) {
+                    case '01d': return 'fa-sun';
+                    case '01n': return 'fa-moon';
+                    case '02d':
+                    case '03d': return 'fa-cloud-sun';
+                    case '02n':
+                    case '03n': return 'fa-cloud-moon';
+                    case '04d':
+                    case '04n': return 'fa-cloud';
+                    case '09d':
+                    case '09n':
+                    case '10d':
+                    case '10n': return 'fa-cloud-rain';
+                    case '11d':
+                    case '11n': return 'fa-bolt';
+                    case '13d':
+                    case '13n': return 'fa-snowflake';
+                    case '50d':
+                    case '50n': return 'fa-smog';
+                    default: return 'fa-question';
+                }
+            }
+
+            // Get weather data on page load
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        getWeatherData(`${latitude},${longitude}`);
+                    },
+                    error => {
+                        console.error("Geolocation error:", error);
+                        getWeatherData(defaultLocation);
+                    },
+                    {
+                        timeout: 5000,
+                        maximumAge: 0
+                    }
+                );
+            } else {
+                console.log("Geolocation not supported");
+                getWeatherData(defaultLocation);
+            }
 
 
-        // Local Reports Modal Interactions
-        document.getElementById('view-local-reports').addEventListener('click', function (e) {
-            e.preventDefault();
-            localReportsModal.style.display = 'flex';
-        });
+            document.addEventListener('DOMContentLoaded', () => {
+                const sidebarNavItems = document.querySelectorAll('.sidebar-nav-item');
+                const sections = document.querySelectorAll('[data-section]');
+                const scrollProgress = document.getElementById('scroll-progress');
 
-        document.getElementById('close-local-reports').addEventListener('click', function () {
-            localReportsModal.style.display = 'none';
-        });
+                // Smooth scroll to section
+                sidebarNavItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const targetId = item.getAttribute('data-target');
+                        const targetSection = document.getElementById(targetId);
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    });
+                });
 
-        localReportsModal.addEventListener('click', function (e) {
-            if (e.target === localReportsModal) {
+                // Highlight active section and update scroll indicator
+                function updateActiveSection() {
+                    const scrollPosition = window.scrollY;
+                    const viewportHeight = window.innerHeight;
+                    const documentHeight = document.documentElement.scrollHeight;
+
+                    // Update scroll progress indicator
+                    const scrollPercentage = (scrollPosition / (documentHeight - viewportHeight)) * 100;
+                    scrollProgress.style.height = `${scrollPercentage}%`;
+
+                    // Find and highlight active section
+                    let activeSection = null;
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.clientHeight;
+
+                        if (
+                            scrollPosition >= sectionTop - viewportHeight / 3 &&
+                            scrollPosition < sectionTop + sectionHeight - viewportHeight / 3
+                        ) {
+                            activeSection = section;
+                        }
+                    });
+
+                    // Update sidebar nav items
+                    sidebarNavItems.forEach(item => {
+                        const targetId = item.getAttribute('data-target');
+                        item.classList.toggle('active', activeSection && activeSection.id === targetId);
+                    });
+                }
+
+                // Add scroll event listener
+                window.addEventListener('scroll', updateActiveSection);
+                // Initial call to set correct state on page load
+                updateActiveSection();
+            });
+
+            // Local Reports Modal Interactions
+            document.getElementById('view-local-reports').addEventListener('click', function (e) {
+                e.preventDefault();
+                localReportsModal.style.display = 'flex';
+            });
+
+            document.getElementById('close-local-reports').addEventListener('click', function () {
                 localReportsModal.style.display = 'none';
-            }
-        });
+            });
 
-        document.getElementById('windChillForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+            localReportsModal.addEventListener('click', function (e) {
+                if (e.target === localReportsModal) {
+                    localReportsModal.style.display = 'none';
+                }
+            });
 
-            const temperature = parseFloat(document.getElementById('temperature').value);
-            const windSpeed = parseFloat(document.getElementById('windSpeed').value);
-            const resultDiv = document.getElementById('windChillResult');
+            document.getElementById('windChillForm').addEventListener('submit', function (e) {
+                e.preventDefault();
 
-            // Wind Chill Formula (National Weather Service)
-            const windChill = 35.74 + (0.6215 * temperature) -
-                (35.75 * Math.pow(windSpeed, 0.16)) +
-                (0.4275 * temperature * Math.pow(windSpeed, 0.16));
+                const temperature = parseFloat(document.getElementById('temperature').value);
+                const windSpeed = parseFloat(document.getElementById('windSpeed').value);
+                const resultDiv = document.getElementById('windChillResult');
 
-            const roundedWindChill = Math.round(windChill);
+                // Wind Chill Formula (National Weather Service)
+                const windChill = 35.74 + (0.6215 * temperature) -
+                    (35.75 * Math.pow(windSpeed, 0.16)) +
+                    (0.4275 * temperature * Math.pow(windSpeed, 0.16));
 
-            let resultText = `Wind Chill: ${roundedWindChill}°F`;
-            let resultClass = 'result-tag';
+                const roundedWindChill = Math.round(windChill);
 
-            if (roundedWindChill <= 0) {
-                resultText += ' - Extreme Cold! Limit outdoor exposure.';
-                resultClass += ' extreme-result';
-            } else if (roundedWindChill <= 20) {
-                resultText += ' - Very Cold. Dress in layers!';
-                resultClass += ' freezing-result';
-            } else if (roundedWindChill <= 32) {
-                resultText += ' - Cold. Possible snow!';
-                resultClass += ' cold-result';
-            }
+                let resultText = `Wind Chill: ${roundedWindChill}°F`;
+                let resultClass = 'result-tag';
 
-            // Wrap the result in a container for additional styling flexibility
-            resultDiv.innerHTML = `
+                if (roundedWindChill <= 0) {
+                    resultText += ' - Extreme Cold! Limit outdoor exposure.';
+                    resultClass += ' extreme-result';
+                } else if (roundedWindChill <= 20) {
+                    resultText += ' - Very Cold. Dress in layers!';
+                    resultClass += ' freezing-result';
+                } else if (roundedWindChill <= 32) {
+                    resultText += ' - Cold. Possible snow!';
+                    resultClass += ' cold-result';
+                }
+
+                resultDiv.innerHTML = `
         <div class="wind-chill-result-container">
             <span class="${resultClass}">${resultText}</span>
         </div>
     `;
-        });
+            });
 
+            // Create Snowfall Animation
+            function createSnowflake() {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
 
-        // Create Snowfall Animation
-        function createSnowflake() {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
+                snowflake.style.left = `${Math.random() * 100}%`;
+                const size = Math.random() * 5 + 2;
+                snowflake.style.width = `${size}px`;
+                snowflake.style.height = `${size}px`;
+                const duration = Math.random() * 10 + 5;
+                snowflake.style.animationDuration = `${duration}s`;
+                snowflake.style.animationDelay = `-${Math.random() * duration}s`;
 
-            // Random positioning
-            snowflake.style.left = `${Math.random() * 100}%`;
+                snowContainer.appendChild(snowflake);
 
-            // Random size
-            const size = Math.random() * 5 + 2;
-            snowflake.style.width = `${size}px`;
-            snowflake.style.height = `${size}px`;
-
-            // Random fall duration
-            const duration = Math.random() * 10 + 5;
-            snowflake.style.animationDuration = `${duration}s`;
-
-            // Random horizontal movement
-            snowflake.style.animationDelay = `-${Math.random() * duration}s`;
-
-            snowContainer.appendChild(snowflake);
-
-            // Remove snowflake after animation
-            setTimeout(() => {
-                snowflake.remove();
-            }, duration * 1000);
-        }
-
-        // Create multiple snowflakes
-        function initSnowfall() {
-            for (let i = 0; i < 50; i++) {
-                createSnowflake();
+                setTimeout(() => {
+                    snowflake.remove();
+                }, duration * 1000);
             }
 
-            // Continuously create snowflakes
-            setInterval(createSnowflake, 500);
-        }
-
-        // Initialize snowfall
-        initSnowfall();
-
-         function updateCountdown() {
-            const now = new Date();
-            const christmasDate = new Date(now.getFullYear(), 11, 25); // Month is 0-indexed
-
-            if (now > christmasDate) {
-                christmasDate.setFullYear(now.getFullYear() + 1); // Get next Christmas
+            function initSnowfall() {
+                for (let i = 0; i < 50; i++) {
+                    createSnowflake();
+                }
+                setInterval(createSnowflake, 500);
             }
-            const timeLeft = christmasDate.getTime() - now.getTime();
 
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            initSnowfall();
 
-            let countdownText = "";
-            if (days > 1) {
-                 countdownText = `${days} Days until Christmas`;
+            function updateCountdown() {
+                const now = new Date();
+                const christmasDate = new Date(now.getFullYear(), 11, 25);
+
+                if (now > christmasDate) {
+                    christmasDate.setFullYear(now.getFullYear() + 1);
+                }
+                const timeLeft = christmasDate.getTime() - now.getTime();
+
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+
+                let countdownText = "";
+                if (days > 1) {
+                    countdownText = `${days} Days until Christmas`;
+                }
+                else if (days === 1) {
+                    countdownText = `1 Day until Christmas`;
+                }
+                else {
+                    countdownText = `It's Christmas!!`
+                }
+                countdownDiv.textContent = countdownText;
             }
-            else if (days === 1){
-                countdownText = `1 Day until Christmas`;
-            }
-            else {
-                 countdownText = `It's Christmas!!`
-            }
-            countdownDiv.textContent = countdownText;
-        }
 
-         updateCountdown(); // Call immediately to initialize the count
-         setInterval(updateCountdown, 1000); // Update every second
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
 
-    </script>
+
+        </script>
 </body>
+
 
 </html>
